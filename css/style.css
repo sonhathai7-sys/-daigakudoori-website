@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@500;700&family=Montserrat:wght@400;500&display=swap');
+
+* {
+  font-variation-settings: "wdth" 100;
+}
+
+body {
+  font-family: 'Roboto', 'Inter', sans-serif;
+  color: #333;
+}
+
+.font-jp {
+  font-family: 'Noto Sans JP', 'Roboto', sans-serif;
+}
+
+.text-shadow-soft {
+  text-shadow: 1px 1px 10px rgba(51, 51, 51, 0.12);
+}
+
+.text-shadow-soft-white {
+  text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.12);
+}
+
+/* Mobile menu overlay */
+#mobile-menu {
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+}
+#mobile-menu.open {
+  transform: translateX(0);
+}
+
+/* Accordion caret rotation */
+.accordion-trigger[aria-expanded="true"] .accordion-caret {
+  transform: rotate(180deg);
+}
+
+/* Services page tab panels (!important needed: Tailwind's own .flex utility
+   class on the same element otherwise wins the cascade over this rule) */
+.tab-panel {
+  display: none !important;
+}
+.tab-panel.active {
+  display: flex !important;
+}
+.tab-btn[aria-selected="true"] {
+  color: #0078c0;
+  border-color: #0078c0;
+}
+
+/* Smooth scroll for anchor / sidebar links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Simple fade-in on load for hero content */
+.fade-up {
+  animation: fadeUp 0.6s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+img {
+  max-width: 100%;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Partners strip: infinite left-to-right auto-scrolling marquee.
+   Track holds the logo set twice back-to-back; animating from -50% to 0%
+   slides the whole track rightward and loops seamlessly. */
+.marquee-track {
+  animation: marquee-ltr 28s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+@keyframes marquee-ltr {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* Soft fade at the left/right edges of the marquee viewport */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 64px, #000 calc(100% - 64px), transparent 100%);
+}
