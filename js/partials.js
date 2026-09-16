@@ -9,6 +9,21 @@ const NAV_LINKS = [
   { label: "Tin tức", href: "#", key: "news" },
 ];
 
+// Renders a row of section tabs (used by about.html and services.html).
+// tag "a" -> anchor links for scroll-spy pages, "button" -> click-driven tab panels.
+function renderSectionTabs(tabs, active, tag) {
+  tag = tag || "a";
+  return tabs
+    .map((t) => {
+      const attrs = tag === "a" ? `href="#${t.id}"` : `type="button"`;
+      return `<${tag} ${attrs} class="tab-btn flex items-center justify-between md:justify-center gap-3 w-full md:w-auto py-4 text-base md:text-lg text-[#333] border-transparent md:border-b-4" data-tab="${t.id}" aria-selected="${t.id === active}">
+        <span>${t.label}</span>
+        <span class="md:hidden shrink-0 inline-flex items-center justify-center bg-[#0078c0]/20 text-[#0078c0] rounded-full size-7 text-base">→</span>
+      </${tag}>`;
+    })
+    .join("");
+}
+
 function renderHeader(active) {
   const navHtml = NAV_LINKS.map((n) => {
     const isActive = n.key === active;
@@ -22,7 +37,7 @@ function renderHeader(active) {
         <img src="assets/images/company-logo-71cdd965.png" alt="Daigakudoori" class="h-12 w-auto object-contain" />
         <span class="font-jp font-bold text-[19px] leading-none text-black">大学通り合同会社</span>
       </a>
-      <a href="index.html" class="flex md:hidden items-center gap-2 bg-white px-4 py-3">
+      <a href="index.html" class="flex md:hidden flex-1 items-center gap-2 bg-white px-4 py-3">
         <img src="assets/images/company-logo-71cdd965.png" alt="Daigakudoori" class="h-9 w-auto object-contain" />
         <span class="font-jp font-bold text-[14px] leading-none text-black">大学通り合同会社</span>
       </a>

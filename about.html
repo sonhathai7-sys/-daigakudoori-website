@@ -28,13 +28,7 @@
 
 <main class="bg-gradient-to-b from-white to-[#e6f2f9] px-6 md:px-20 pt-6 pb-16 flex flex-col gap-16">
   <div class="sticky top-0 z-20 bg-white/90 backdrop-blur-sm border-b border-[#d9d9d9] shadow-sm -mx-6 md:-mx-20 px-6 md:px-20">
-    <div class="max-w-[1280px] mx-auto flex flex-wrap justify-center gap-8 md:gap-16">
-      <a href="#phuong-cham" class="tab-btn py-4 text-lg text-[#333] border-b-4 border-transparent" data-tab="phuong-cham" aria-selected="true">Phương châm hoạt động</a>
-      <a href="#lich-su" class="tab-btn py-4 text-lg text-[#333] border-b-4 border-transparent" data-tab="lich-su">Lịch sử hình thành</a>
-      <a href="#nguoi-sang-lap" class="tab-btn py-4 text-lg text-[#333] border-b-4 border-transparent" data-tab="nguoi-sang-lap">Người sáng lập</a>
-      <a href="#so-do-to-chuc" class="tab-btn py-4 text-lg text-[#333] border-b-4 border-transparent" data-tab="so-do-to-chuc">Sơ đồ tổ chức</a>
-      <a href="#thong-tin" class="tab-btn py-4 text-lg text-[#333] border-b-4 border-transparent" data-tab="thong-tin">Hồ sơ công ty</a>
-    </div>
+    <div id="about-tabs" class="max-w-[1280px] mx-auto flex flex-col md:flex-row md:flex-wrap md:justify-center gap-0 md:gap-16 bg-[#f8f8f8] md:bg-transparent rounded-2xl md:rounded-none px-4 md:px-0 divide-y divide-[#e5e5e5] md:divide-y-0"></div>
   </div>
 
   <!-- PHƯƠNG CHÂM HOẠT ĐỘNG -->
@@ -184,6 +178,15 @@
 <script src="js/partials.js"></script>
 <script src="js/main.js"></script>
 <script>
+  const ABOUT_TABS = [
+    { id: "phuong-cham", label: "Phương châm hoạt động" },
+    { id: "lich-su", label: "Lịch sử hình thành" },
+    { id: "nguoi-sang-lap", label: "Người sáng lập" },
+    { id: "so-do-to-chuc", label: "Sơ đồ tổ chức" },
+    { id: "thong-tin", label: "Hồ sơ công ty" },
+  ];
+  document.getElementById("about-tabs").innerHTML = renderSectionTabs(ABOUT_TABS, "phuong-cham", "a");
+
   const sectionTabBtns = document.querySelectorAll(".tab-btn");
   const sections = [...sectionTabBtns].map((btn) => document.getElementById(btn.dataset.tab)).filter(Boolean);
 
